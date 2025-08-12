@@ -1,4 +1,6 @@
 import React from 'react';
+// We'll use a library for the typewriter effect
+import { TypeAnimation } from 'react-type-animation';
 // And a library for nice, clean icons
 import { Github, Linkedin, Mail, User, Code, Palette, PenTool, Server } from 'lucide-react';
 
@@ -88,10 +90,21 @@ function App() {
         {/* --- Hero Section --- */}
         <section id="hero" className="container mx-auto px-6 py-20 md:py-24 flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
           <div className="flex-1 text-center md:text-left">
-            {/* The TypeAnimation component was removed to fix the error */}
-            <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-              UX/UI Designer & Creative Developer
-            </h2>
+            {/* The TypeAnimation component is now back! */}
+            <TypeAnimation
+              sequence={[
+                'UX/UI Designer',
+                2000,
+                'Creative Developer',
+                2000,
+                'Problem Solver',
+                2000,
+              ]}
+              wrapper="h2"
+              speed={50}
+              className="text-4xl md:text-6xl font-extrabold leading-tight mb-4"
+              repeat={Infinity}
+            />
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto md:mx-0 mb-8">
               I design and build beautiful, intuitive, and responsive web experiences.
             </p>
@@ -124,7 +137,6 @@ function App() {
               </div>
               <div className="md:w-1/3">
                 <h3 className="text-2xl font-bold text-cyan-400 mb-4 text-center md:text-left">My Skills</h3>
-                {/* NEW: Mapping over the skills array to include icons */}
                 <ul className="space-y-3">
                   {skills.map(skill => (
                     <li key={skill.name} className="bg-gray-700 p-3 rounded-md flex items-center">
@@ -177,7 +189,6 @@ function App() {
       {/* --- Footer --- */}
       <footer className="bg-gray-900 py-6">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-gray-400">
-          {/* NEW: Social media icons */}
           <div className="flex space-x-4 mb-4 md:mb-0">
             <a href="#" className="hover:text-cyan-400 transition-colors"><Github /></a>
             <a href="#" className="hover:text-cyan-400 transition-colors"><Linkedin /></a>
