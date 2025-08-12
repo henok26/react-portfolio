@@ -180,7 +180,7 @@ function App() {
               href="mailto:your.email@example.com"
               className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 inline-block"
             >
-              Email Me
+              Contact Me
             </a>
           </div>
         </section>
