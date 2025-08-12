@@ -1,8 +1,9 @@
 import React from 'react';
+// And a library for nice, clean icons
+import { Github, Linkedin, Mail, User, Code, Palette, PenTool, Server } from 'lucide-react';
+
 
 // --- Project Card Component ---
-// This is a reusable component to display each project.
-// It takes 'props' (properties) like image, title, description, and tags.
 const ProjectCard = ({ image, title, description, tags, link }) => {
   return (
     <div className="bg-gray-800 rounded-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 shadow-lg">
@@ -28,19 +29,17 @@ const ProjectCard = ({ image, title, description, tags, link }) => {
 };
 
 
-// Main App Component - This is the entry point for our portfolio
+// Main App Component
 function App() {
 
   // --- Project Data ---
-  // An array of objects, where each object is a project.
-  // This makes it easy to add, remove, or update projects in one place.
   const projects = [
     {
-      image: '/project-saas-movers.jpg', // Use your actual image path in the /public folder
+      image: '/project-saas-movers.jpg',
       title: 'SaaS for House Mover Business',
       description: 'A complete UX/UI design for a Software as a Service platform tailored for house moving businesses in the UK.',
       tags: ['UX Design', 'UI Design', 'SaaS', 'Figma'],
-      link: '#' // Add a link to the case study or live project
+      link: '#'
     },
     {
       image: '/project-dan-inventory.jpg',
@@ -56,7 +55,16 @@ function App() {
       tags: ['Mobile App', 'Web App', 'UX/UI', 'Prototyping'],
       link: '#'
     },
-    // You can add more projects here following the same structure
+  ];
+
+  // --- Skills Data with Icons ---
+  // Storing skills in an array makes it easier to manage and render.
+  const skills = [
+    { name: 'User Research & Personas', icon: <User className="w-5 h-5 mr-2 text-cyan-400" /> },
+    { name: 'Wireframing & Prototyping', icon: <PenTool className="w-5 h-5 mr-2 text-cyan-400" /> },
+    { name: 'Figma, Adobe XD, Sketch', icon: <Palette className="w-5 h-5 mr-2 text-cyan-400" /> },
+    { name: 'HTML, CSS & JavaScript', icon: <Code className="w-5 h-5 mr-2 text-cyan-400" /> },
+    { name: 'React & Tailwind CSS', icon: <Server className="w-5 h-5 mr-2 text-cyan-400" /> },
   ];
 
   return (
@@ -80,6 +88,7 @@ function App() {
         {/* --- Hero Section --- */}
         <section id="hero" className="container mx-auto px-6 py-20 md:py-24 flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
           <div className="flex-1 text-center md:text-left">
+            {/* The TypeAnimation component was removed to fix the error */}
             <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
               UX/UI Designer & Creative Developer
             </h2>
@@ -104,7 +113,7 @@ function App() {
         <section id="about" className="bg-gray-800 py-20 md:py-24">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
-            <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            <div className="flex flex-col md:flex-row items-start gap-10 md:gap-16">
               <div className="md:w-2/3 text-center md:text-left">
                 <p className="text-lg text-gray-300 mb-4">
                   Hello! I'm Henok, a passionate UX/UI designer with a love for creating clean, user-centric designs. My journey into the world of design started with a fascination for how people interact with technology, and it has grown into a career dedicated to making those interactions seamless and enjoyable.
@@ -115,12 +124,14 @@ function App() {
               </div>
               <div className="md:w-1/3">
                 <h3 className="text-2xl font-bold text-cyan-400 mb-4 text-center md:text-left">My Skills</h3>
-                <ul className="space-y-2">
-                  <li className="bg-gray-700 p-3 rounded-md">User Research & Personas</li>
-                  <li className="bg-gray-700 p-3 rounded-md">Wireframing & Prototyping</li>
-                  <li className="bg-gray-700 p-3 rounded-md">Figma, Adobe XD, Sketch</li>
-                  <li className="bg-gray-700 p-3 rounded-md">HTML, CSS & JavaScript</li>
-                  <li className="bg-gray-700 p-3 rounded-md">React & Tailwind CSS</li>
+                {/* NEW: Mapping over the skills array to include icons */}
+                <ul className="space-y-3">
+                  {skills.map(skill => (
+                    <li key={skill.name} className="bg-gray-700 p-3 rounded-md flex items-center">
+                      {skill.icon}
+                      <span>{skill.name}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -165,8 +176,13 @@ function App() {
 
       {/* --- Footer --- */}
       <footer className="bg-gray-900 py-6">
-        <div className="container mx-auto px-6 text-center text-gray-400">
-          {/* You can add social media links here */}
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-gray-400">
+          {/* NEW: Social media icons */}
+          <div className="flex space-x-4 mb-4 md:mb-0">
+            <a href="#" className="hover:text-cyan-400 transition-colors"><Github /></a>
+            <a href="#" className="hover:text-cyan-400 transition-colors"><Linkedin /></a>
+            <a href="mailto:your.email@example.com" className="hover:text-cyan-400 transition-colors"><Mail /></a>
+          </div>
           <p>&copy; 2024 Henok Niguse. All Rights Reserved.</p>
         </div>
       </footer>
